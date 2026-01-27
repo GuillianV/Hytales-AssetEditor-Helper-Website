@@ -24,6 +24,19 @@ declare global {
 		path: string;
 		createdAt: Date;
 	};
+
+	export type FullContact = {
+		type: {
+			id: string;
+			type: string;
+		};
+	} & {
+		id: string;
+		email: string;
+		discordId: string;
+		message: string;
+		createdAt: Date;
+	};
 }
 
 export {};

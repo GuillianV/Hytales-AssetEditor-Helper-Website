@@ -11,15 +11,13 @@
 		offset = 0;
 		limit = 10;
 
-		console.log(offset, limit, totalResults);
-
 		if (event.currentTarget.value.length == 0) {
 			results = [];
 			totalResults = 0;
 			return;
 		}
 
-		fetch(`${serverurl}/properties/${searchInput.value}`, {
+		fetch(`${serverurl}/properties/${searchInput.value}?offset=${offset}&limit=${limit}`, {
 			mode: 'cors',
 			headers: {
 				'Access-Control-Allow-Origin': '*'
@@ -36,13 +34,35 @@
 				console.error(err);
 			});
 	}
+
+	function loadmore() {
+		offset = offset + limit;
+
+		fetch(`${serverurl}/properties/${searchInput.value}?offset=${offset}&limit=${limit}`, {
+			mode: 'cors',
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			}
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.properties != null) {
+					results = results.concat(data.properties);
+					totalResults = data.total;
+				}
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
 </script>
 
 <div class="bg-neutral-100 p-8">
 	<img
 		src="/images/Hytale-bg.jpg"
 		alt="bg"
-		class="w-full h-screen bg-cover object-cover rounded-3xl"
+		style="height: calc(100vh - 140px );"
+		class="w-full bg-cover object-cover rounded-3xl"
 	/>
 
 	<div
@@ -74,18 +94,22 @@
 					<div class="mr-2">
 						<div class="w-fit p-2 text-black mt-0 rounded-3xl mb-2 bg-neutral-200 cursor-pointer">
 							<p>
-								<a target="_blank" href="/property/{result.replace('.json', '')}">{result.replace('.json', '')}</a>
-								
+								<a target="_blank" href="/property/{result.replace('.json', '')}"
+									>{result.replace('.json', '')}</a
+								>
 							</p>
 						</div>
 					</div>
 				{/each}
 				{#if offset + limit < totalResults}
 					<div class="mr-2">
+						<!-- svelte-ignore a11y_click_events_have_key_events -->
+						<!-- svelte-ignore event_directive_deprecated -->
 						<div
+							on:click={loadmore}
 							class="w-fit p-2 bg-blue-900 mt-0 rounded-3xl mb-2 text-neutral-200 cursor-pointer"
 						>
-							<p>Load more</p>
+							<div>Load more</div>
 						</div>
 					</div>
 				{/if}
@@ -123,11 +147,19 @@
 		Before creating the front app, i'd like to get a bit of feedback if this would be intresting
 		<br /><br />
 		<p>
-			This is in developement : <a
-				class="underline"
-				href="https://github.com/GuillianV/Hytales-AssetEditor-Helper"
-				>https://github.com/GuillianV/Hytales-AssetEditor-Helper</a
-			>. <br /> Give me your feedback and constructive advice pls
+			<strong> This is in developement, </strong>
+			<br />
+			Backend Github &nbsp;:
+			<a class="underline" href="https://github.com/GuillianV/Hytales-AssetEditor-Helper"
+				>GuillianV/Hytales-AssetEditor-Helper</a
+			>. <br />
+			Frontend Github :
+			<a class="underline" href="https://github.com/GuillianV/Hytales-AssetEditor-Helper-Website"
+				>GuillianV/Hytales-AssetEditor-Helper-Website</a
+			>. <br /><br />
+
+			Give me your feedback and constructive advice
+			<a href="/contact" class="font-bold underline text-xl">here</a> !
 		</p>
 	</div>
 </div>

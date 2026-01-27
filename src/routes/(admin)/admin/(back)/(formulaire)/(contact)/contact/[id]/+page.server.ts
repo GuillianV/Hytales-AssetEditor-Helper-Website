@@ -9,9 +9,12 @@ export const load: PageServerLoad = async (event) => {
 	const { params } = event;
 	const { id = '' } = params;
 
-	const contact: Contact | null = await prisma.contact.findUnique({
+	const contact: FullContact | null = await prisma.contact.findUnique({
 		where: {
 			id
+		},
+		include: {
+			type: true
 		}
 	});
 
@@ -22,7 +25,7 @@ export const load: PageServerLoad = async (event) => {
 	return {
 		backlink: '/admin/contacts',
 		active: 'contacts',
-		contact: contact as Contact
+		contact: contact as FullContact
 	};
 };
 

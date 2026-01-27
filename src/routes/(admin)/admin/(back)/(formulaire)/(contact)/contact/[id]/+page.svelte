@@ -65,23 +65,16 @@
 
 	<div class="mt-4 w-full bg-surface-300 dark:bg-surface-800 rounded-container-token p-8">
 		<div class="mb-4 flex flex-col">
-			<span class="ml-3 font-semibold">Nom</span>
+			<span class="ml-3 font-semibold">Discord ID</span>
 			<span class="bg-surface-50 dark:bg-surface-700 p-2 pl-3 pr-3 rounded-container-token"
-				>{contact.nom}</span
+				>{contact.discordId}</span
 			>
 		</div>
 
 		<div class="mb-4 flex flex-col">
-			<span class="ml-3 font-semibold">Prenom</span>
+			<span class="ml-3 font-semibold">Type</span>
 			<span class="bg-surface-50 dark:bg-surface-700 p-2 pl-3 pr-3 rounded-container-token"
-				>{contact.prenom}</span
-			>
-		</div>
-
-		<div class="mb-4 flex flex-col">
-			<span class="ml-3 font-semibold">Téléphone</span>
-			<span class="bg-surface-50 dark:bg-surface-700 p-2 pl-3 pr-3 rounded-container-token"
-				><a href="tel:{contact.telephone}">{contact.telephone}</a></span
+				>{contact.type.type}</span
 			>
 		</div>
 

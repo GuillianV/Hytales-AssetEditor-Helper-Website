@@ -64,8 +64,8 @@
 							></Icon></span
 						>
 						<span class="pl-4 flex-auto">
-							<dt>{contact.nom} {contact.prenom}</dt>
-							<dd>{contact.email}</dd>
+							<dt>{contact.type.type}</dt>
+							<dd>{contact.discordId} {contact.email}</dd>
 						</span>
 					</a>
 					<div>

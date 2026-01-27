@@ -8,7 +8,7 @@ import Mailer from '$lib/server/mail';
 export const POST: RequestHandler = async ({ request }): Promise<Response> => {
 	try {
 		const formData = await request.formData();
-		const { nom, prenom, email, telephone, message, token } = Object.fromEntries(formData);
+		const { email, discordId, contactType, message, token } = Object.fromEntries(formData);
 
 		const ParamReCapchaSecret = await getParametre('SECRET_RECAPCHA_SITEKEY');
 
@@ -20,42 +20,10 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
 			);
 		}
 
-		if (IsEmptyString(token)) {
-			logger.warn({}, 'Le token recapcha ne doit pas être vide', '/api/contact');
+		if (IsEmptyString(contactType)) {
+			logger.warn({}, 'Le contactType ne doit pas être vide', '/api/contact');
 			return new Response(
-				JSON.stringify({ type: 'failure', errorMsg: 'Le token recapcha ne doit pas être vide' }),
-				{ status: 400 }
-			);
-		}
-
-		if (IsEmptyString(nom)) {
-			logger.warn({}, 'Le nom ne doit pas être vide', '/api/contact');
-			return new Response(
-				JSON.stringify({ type: 'failure', errorMsg: 'Le nom ne doit pas être vide' }),
-				{ status: 400 }
-			);
-		}
-
-		if (IsEmptyString(prenom)) {
-			logger.warn({}, 'Le prenom ne doit pas être vide', '/api/contact');
-			return new Response(
-				JSON.stringify({ type: 'failure', errorMsg: 'Le prenom ne doit pas être vide' }),
-				{ status: 400 }
-			);
-		}
-
-		if (IsEmptyString(email)) {
-			logger.warn({}, "L'email ne doit pas être vide", '/api/contact');
-			return new Response(
-				JSON.stringify({ type: 'failure', errorMsg: "L'email ne doit pas être vide" }),
-				{ status: 400 }
-			);
-		}
-
-		if (IsEmptyString(telephone)) {
-			logger.warn({}, 'Le telephone ne doit pas être vide', '/api/contact');
-			return new Response(
-				JSON.stringify({ type: 'failure', errorMsg: 'Le telephone ne doit pas être vide' }),
+				JSON.stringify({ type: 'failure', errorMsg: 'Le contactType ne doit pas être vide' }),
 				{ status: 400 }
 			);
 		}
@@ -82,10 +50,13 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
 
 		await prisma.contact.create({
 			data: {
-				nom: nom as string,
-				prenom: prenom as string,
+				type: {
+					connect: {
+						id: contactType as string
+					}
+				},
 				email: email as string,
-				telephone: telephone as string,
+				discordId: discordId as string,
 				message: message as string
 			}
 		});

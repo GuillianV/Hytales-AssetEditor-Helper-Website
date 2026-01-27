@@ -46,12 +46,18 @@ model Actualite {
 //BO (Formulaires)
 model Contact {
   id        String   @id @default(uuid())
-  email     String
-  nom       String
-  prenom    String
-  telephone String
+  type      ContactType   @relation(references: [id], fields: [id], onDelete: Cascade)
+  email     String  @default("")
+  discordId String  @default("")
   message   String
   createdAt DateTime @default(now())
+}
+
+//BO (Formulaires)
+model ContactType {
+  id        String   @id @default(uuid())
+  type      String
+  contacts  Contact[]
 }
 
 //BO (Galerie)

@@ -2,12 +2,14 @@
 	import { enhance, applyAction } from '$app/forms';
 	import { IsEmptyString } from '$lib/client/utils/type';
 	import type { ParmetreReponse } from '$lib/client/utils/ambiant';
+	import type { ContactType } from '@prisma/client';
 
 	interface Props {
 		PUBLIC_RECAPCHA_SITEKEY: ParmetreReponse;
+		contactTypes: ContactType[];
 	}
 
-	let { PUBLIC_RECAPCHA_SITEKEY }: Props = $props();
+	let { PUBLIC_RECAPCHA_SITEKEY, contactTypes }: Props = $props();
 	let errorMsg: string = $state('');
 </script>
 
@@ -24,15 +26,10 @@
 	id="contact"
 	use:enhance={async ({ formData, cancel }) => {
 		try {
-			const { nom, prenom, email, telephone, message } = Object.fromEntries(formData);
+			const { contactType, message } = Object.fromEntries(formData);
 
-			if (
-				IsEmptyString(nom) ||
-				IsEmptyString(prenom) ||
-				IsEmptyString(email) ||
-				IsEmptyString(telephone) ||
-				IsEmptyString(message)
-			) {
+			
+			if (IsEmptyString(contactType) || IsEmptyString(message)) {
 				cancel();
 				return;
 			}
@@ -54,7 +51,7 @@
 			formData.append('token', token);
 		} catch (error) {
 			console.error(error);
-			errorMsg = "Une erreur est survenue lors de l'envoi du formulaire";
+			errorMsg = 'An error has occured while sending the form';
 			cancel();
 			return;
 		}
@@ -74,7 +71,7 @@
 						errorMsg = result.errorMsg;
 					break;
 				case 'error':
-					errorMsg = 'Une erreur serveur est survenue';
+					errorMsg = 'An error has occured while sending the form';
 					break;
 				default:
 					break;
@@ -82,29 +79,43 @@
 		};
 	}}
 >
-	<label class="label" for="nom">
-		<span class="ml-3 font-semibold">Nom</span>
-		<input class="input" name="nom" contenteditable="true" type="text" required />
-	</label>
-
-	<label class="label" for="prenom">
-		<span class="ml-3 font-semibold">Prenom</span>
-		<input class="input" name="prenom" contenteditable="true" type="text" required />
+	<label class="label" for="contactType">
+		<span class="ml-3 font-semibold">Type*</span><br />
+		<select name="contactType" class="rounded-3xl w-full" required>
+			{#each contactTypes as contactType}
+				<option value={contactType.id}>{contactType.type}</option>
+			{/each}
+		</select>
 	</label>
 
 	<label class="label" for="email">
-		<span class="ml-3 font-semibold">E-mail</span>
-		<input class="input" name="email" contenteditable="true" type="email" required />
+		<span class="ml-3 font-semibold">Email</span>
+		<input
+			class="input bg-white border border-gray-500"
+			name="email"
+			contenteditable="true"
+			type="text"
+		/>
 	</label>
 
-	<label class="label" for="telephone">
-		<span class="ml-3 font-semibold">Téléphone</span>
-		<input class="input" name="telephone" type="tel" required />
+	<label class="label" for="discordId">
+		<span class="ml-3 font-semibold">Discord ID</span>
+		<input
+			class="input bg-white border border-gray-500"
+			name="discordId"
+			contenteditable="true"
+			type="text"
+		/>
 	</label>
 
 	<label class="label" for="message">
-		<span class="ml-3 font-semibold">Message</span>
-		<input class="input" name="message" type="text" required />
+		<span class="ml-3 font-semibold">Message*</span>
+		<textarea
+			class="input rounded-3xl bg-white border border-gray-500"
+			name="message"
+			rows="3"
+			required
+		></textarea>
 	</label>
 
 	<div class="error" aria-live="polite">
@@ -114,6 +125,8 @@
 	</div>
 
 	<label class="label" for="envoyer">
-		<button type="submit">Envoyer</button>
+		<button class="bg-blue-900 text-white font-bold rounded-3xl p-2 mt-8" type="submit"
+			>Envoyer</button
+		>
 	</label>
 </form>

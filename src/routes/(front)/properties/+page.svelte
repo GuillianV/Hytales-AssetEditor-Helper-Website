@@ -12,7 +12,7 @@
 			alt="bg"
 		/>
 		<h1
-			class="absolute text-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-7xl font-bold text-white"
+			class="absolute text-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm:text-7xl text-xl font-bold text-white"
 		>
 			All properties
 		</h1>

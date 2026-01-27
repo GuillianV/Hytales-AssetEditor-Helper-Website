@@ -46,14 +46,14 @@
 			alt="bg"
 		/>
 		<h1
-			class="absolute text-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-7xl font-bold text-white"
+			class="absolute text-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm:text-7xl text-xl font-bold text-white"
 		>
 			{id}
 		</h1>
 	</div>
 
 	{#if primitives}
-		<div class="mt-4 rounded-3xl border border-black p-8">
+		<div class="mt-4 rounded-3xl border border-black p-8 overflow-x-auto">
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore event_directive_deprecated -->
 			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -83,12 +83,12 @@
 									primitives_opened.push(key);
 								}
 							}}
-							class="bg-neutral-300 rounded-3xl ml-2 mb-2 w-fit p-2 cursor-pointer"
+							class="bg-neutral-300 rounded-3xl ml-2 w-fit p-2 cursor-pointer hover:bg-neutral-400"
 						>
 							{key}
 						</div>
 						{#if primitives_opened.includes(key)}
-							<div class="bg-neutral-200 h-fit w-fit flex flex-col ml-2 rounded-3xl p-2">
+							<div class="bg-neutral-200 h-fit w-fit flex flex-col mt-2 ml-2 rounded-3xl p-2">
 								{#each Object.values(primitives_values[key]).sort() as value}
 									<div>{key == "string" ? '"' : ""}{value}{key == "string" ? '"' : ""}</div>
 								{/each}
@@ -102,7 +102,7 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-		<div class="mt-4 rounded-3xl border h-auto border-black p-8">
+		<div class="mt-4 rounded-3xl border h-auto border-black p-8 overflow-x-auto">
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore event_directive_deprecated -->
 			<h2
@@ -139,7 +139,7 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-		<div class="mt-4 rounded-3xl border h-auto border-black p-8">
+		<div class="mt-4 rounded-3xl border h-auto border-black p-8 overflow-x-auto">
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore event_directive_deprecated -->
 			<h2
@@ -170,7 +170,7 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-		<div class="mt-4 rounded-3xl border h-auto border-black p-8">
+		<div class="mt-4 rounded-3xl border h-auto border-black p-8 overflow-x-auto">
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore event_directive_deprecated -->
 			<h2
@@ -201,7 +201,7 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-		<div class="mt-4 rounded-3xl border h-auto border-black p-8">
+		<div class="mt-4 rounded-3xl border h-auto border-black p-8 overflow-x-auto">
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore event_directive_deprecated -->
 			<h2
