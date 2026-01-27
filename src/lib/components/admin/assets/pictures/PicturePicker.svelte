@@ -1,0 +1,116 @@
+<script lang="ts">
+	import { AssetsActions, AssetsCategories } from '$lib/client/assets/enums';
+	import qualities, { Quality } from '$lib/client/assets/pictures/quality';
+	import resolutions, { Resolution } from '$lib/client/assets/pictures/resolution';
+	import ButtonDelete from '$lib/components/admin/buttons/delete/ButtonDelete.svelte';
+	import { showAssets, subscribeAssetsAction } from '$lib/client/assets/stores';
+	import type { PictureAsset } from '@prisma/client';
+	import { v4 as uuid } from 'uuid';
+	import type { Asset } from '@prisma/client';
+
+	let galeryAsset: Asset | null = $state(null);
+	interface Props {
+		savedAsset?: PictureAsset | null;
+		assetName?: string;
+		identifier?: string;
+	}
+
+	let { savedAsset = $bindable(null), assetName = 'Photo', identifier = '0' }: Props = $props();
+
+	const assetPickerId = uuid();
+	let resolution = $state(Resolution.fromInput(savedAsset?.resolution));
+	let quality = $state(Quality.fromInput(savedAsset?.quality));
+
+	export function deleteAssetRelation() {
+		galeryAsset = null;
+		savedAsset = null;
+	}
+
+	export function loadAssetRelation(_savedAsset: PictureAsset | null) {
+		deleteAssetRelation();
+		savedAsset = _savedAsset;
+		resolution = Resolution.fromInput(savedAsset?.resolution);
+		quality = Quality.fromInput(savedAsset?.quality);
+	}
+
+	subscribeAssetsAction(assetPickerId, (event) => {
+		const { actionName } = event;
+
+		switch (actionName) {
+			case AssetsActions.PICKED:
+				if (event.assetPickerId == assetPickerId && event.asset != null)
+					galeryAsset = event.asset as Asset;
+				break;
+
+			case AssetsActions.DELETE:
+				if (event.asset) {
+					const id = event.asset.id;
+					if (id == galeryAsset?.id || id == savedAsset?.assetId) {
+						deleteAssetRelation();
+					}
+				}
+				break;
+		}
+	});
+</script>
+
+<div class=" border-solid border-tertiary-100 rounded-3xl mb-4 border sm:border-none">
+	<div class="rounded-container-token">
+		<div class="flex flex-wrap">
+			<div class="basis-full sm:basis-1/3 flex flex-col">
+				<span class="ml-3 font-medium">{assetName}</span>
+				<input
+					class="input h-full"
+					type="button"
+					value="Choisir une image dans la galerie"
+					onclick={() => {
+						showAssets(AssetsCategories.PICTURE, assetPickerId);
+					}}
+				/>
+
+				<input
+					type="hidden"
+					name="pp_id_{identifier}"
+					value={galeryAsset?.id ?? savedAsset?.assetId}
+				/>
+			</div>
+			<div class="basis-full sm:basis-1/3 sm:pl-4 sm:pr-4 p-0 flex flex-col">
+				<span class="ml-3 font-medium">Qualité</span>
+				<select class="input" name="pp_quality_{identifier}" value={quality.value()}>
+					{#each qualities as quality, index (index)}
+						<option value={quality.value()}>{quality.key()}</option>
+					{/each}
+				</select>
+			</div>
+			<div class="basis-full sm:basis-1/3 flex flex-col">
+				<span class="ml-3 font-medium">Résolution</span>
+				<select class="input" name="pp_resolution_{identifier}" value={resolution.value()}>
+					{#each resolutions as resolution, index (index)}
+						<option value={resolution.value()}>{resolution.key()}</option>
+					{/each}
+				</select>
+			</div>
+		</div>
+		<div>
+			{#if galeryAsset != null || savedAsset != null}
+				<div
+					class="group/asset mt-4 relative border-solid border-surface-50 dark:border-surface-900 border rounded-container-token"
+				>
+					<ButtonDelete
+						class="absolute top-4 right-4 z-10 transition-all group-hover/asset:opacity-100 opacity-0"
+						id="btn-relation"
+						click={() => {
+							deleteAssetRelation();
+						}}
+					/>
+
+					<img
+						class="group-hover/asset:opacity-75 z-0 transition-all card h-80 w-full bg-cover object-cover"
+						src={galeryAsset?.path ?? savedAsset?.path}
+						alt={assetName}
+					/>
+				</div>
+			{/if}
+		</div>
+	</div>
+</div>
