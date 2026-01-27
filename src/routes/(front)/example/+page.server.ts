@@ -2,8 +2,6 @@ import type { PageServerLoad } from './$types';
 import { getParametre } from '$lib/server/parametres/parametres';
 import { error } from '@sveltejs/kit';
 
-export const prerender = 'auto';
-
 export const load: PageServerLoad = async ({ fetch, url }) => {
 	let fullpath = url.searchParams.get('fullpath');
 	if (fullpath == null) {
