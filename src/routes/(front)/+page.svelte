@@ -129,6 +129,18 @@
 		>
 	</div>
 
+	<div class="border-2 border-black rounded-3xl p-8 mt-8 mb-8">
+		<h2 class="font-medium text-3xl">List of Sources assets</h2>
+		<p class="mb-4">
+			You can retrieve here the full list of the base hytale sources codes, you can use the following link :
+		</p>
+		<a href="/sources" target="_blank" class="mt-4"
+			><div class="font-semibold w-fit bg-red-900 p-2 text-neutral-200 rounded-3xl">
+				Get all !
+			</div></a
+		>
+	</div>
+
 	<div class="border-2 border-black rounded-3xl p-8 mt-8">
 		<strong>Hi everybody,</strong><br />
 		I'm actually working on a website to help Modding Community with Asset Editor.

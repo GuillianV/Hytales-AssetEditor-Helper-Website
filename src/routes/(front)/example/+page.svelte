@@ -1,9 +1,10 @@
 <script lang="js">
 	// @ts-nocheck
 	let { data } = $props();
-	const { example, fullpath, paths, filename } = data;
+	let { example, fullpath, paths, filename } = data;
 	const { asset, references } = example;
 
+	let references_linked_tab_opened = $state(false);
 	let references_tab_opened = $state(false);
 </script>
 
@@ -30,31 +31,41 @@
 			<!-- svelte-ignore event_directive_deprecated -->
 			<h2
 				class="font-bold text-3xl cursor-pointer underline"
-				on:click={() => (references_tab_opened = !references_tab_opened)}
+				on:click={() => (references_linked_tab_opened = !references_linked_tab_opened)}
 			>
-				Parents references
+				Linked references
 			</h2>
-			<div class="flex flex-col {references_tab_opened ? 'hidden' : 'block'}">
-				{filename} : {'{'}
+			<div class="flex mt-8 flex-col {references_linked_tab_opened ? 'hidden' : 'block'}">
+				{filename} :
 
 				{#each references.references.sort() as reference}
 					<a
-						href="/example?fullpath={reference.replace("\\","/")}"
+						href="/example?fullpath={reference.replace('\\', '/')}"
 						target="_blank"
-						class="w-fit h-fit cursor-pointer mt-2 ml-8 p-2 bg-neutral-200 hover:bg-neutral-300"
+						class="w-fit h-fit cursor-pointer mt-2 p-2 bg-neutral-200 hover:bg-neutral-300"
 					>
-						{reference} : {'{'}...{'}'}
+						{reference}
 					</a>
 				{/each}
-
-				{'}'}
 			</div>
 		</div>
 	{/if}
 
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div class="rounded-3xl w-full relative p-8 border mt-8 border-black overflow-x-auto">
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore event_directive_deprecated -->
+		<h2
+			class="font-bold text-3xl cursor-pointer underline"
+			on:click={() => (references_tab_opened = !references_tab_opened)}
+		>
+			Source JSON
+		</h2>
+		<div class="{references_tab_opened ? 'hidden' : 'block'}">
 		<pre><code>
 {JSON.stringify(asset, null, 4)}
-		</code></pre>
+		</code></pre></div>
 	</div>
 </div>
