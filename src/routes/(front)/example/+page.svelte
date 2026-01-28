@@ -39,7 +39,7 @@
 
 				{#each references.references.sort() as reference}
 					<a
-						href="/example?fullpath={reference}"
+						href="/example?fullpath={reference.replace("\\","/")}"
 						target="_blank"
 						class="w-fit h-fit cursor-pointer mt-2 ml-8 p-2 bg-neutral-200 hover:bg-neutral-300"
 					>
