@@ -68,7 +68,7 @@
 	<div
 		class=" absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white w-full text-center"
 	>
-		<h1 class="font-extrabold text-7xl">Hytales Asset Editor Helper</h1>
+		<h1 class="font-extrabold text-7xl">Hytale Asset Editor Helper</h1>
 		<div class="flex flex-col mt-8 justify-center items-center">
 			<h2 class="font-bold text-3xl text-white text-center mb-4">
 				Search for an Asset Editor Property
@@ -150,12 +150,12 @@
 			<strong> This is in developement, </strong>
 			<br />
 			Backend Github &nbsp;:
-			<a class="underline" href="https://github.com/GuillianV/Hytales-AssetEditor-Helper"
-				>GuillianV/Hytales-AssetEditor-Helper</a
+			<a class="underline" href="https://github.com/GuillianV/Hytale-AssetEditor-Helper"
+				>GuillianV/Hytale-AssetEditor-Helper</a
 			>. <br />
 			Frontend Github :
-			<a class="underline" href="https://github.com/GuillianV/Hytales-AssetEditor-Helper-Website"
-				>GuillianV/Hytales-AssetEditor-Helper-Website</a
+			<a class="underline" href="https://github.com/GuillianV/Hytale-AssetEditor-Helper-Website"
+				>GuillianV/Hytale-AssetEditor-Helper-Website</a
 			>. <br /><br />
 
 			Give me your feedback and constructive advice

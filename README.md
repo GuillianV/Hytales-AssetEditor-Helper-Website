@@ -1,8 +1,8 @@
-# Hytales-AssetEditor-Helper-Website
+# Hytale-AssetEditor-Helper-Website
 
 ## Description
 
-Outil d'aide pour Hytales Asset Editor
+Outil d'aide pour Hytale Asset Editor
 
 ## Installation
 
@@ -39,5 +39,3 @@ Page d'un exemple
 Systeme de page et filtre dans properties
 Exemples dynamiques
 UI
-
-Ajouter une liscence

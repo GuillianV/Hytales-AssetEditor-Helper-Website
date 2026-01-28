@@ -7,9 +7,9 @@
 </script>
 
 <svelte:head>
-	<title>Hytales Asset Editor Helper</title>
-	<meta name="description" content="Hytales Asset Editor Helper" />
-	<meta name="keywords" content="Hytales Asset Editor Helper" />
+	<title>Hytale Asset Editor Helper</title>
+	<meta name="description" content="Hytale Asset Editor Helper" />
+	<meta name="keywords" content="Hytale Asset Editor Helper" />
 	<meta name="author" content="Guillian" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="icon" href="/favicon.ico" />
@@ -60,12 +60,12 @@
 		>
 			<div class="flex flex-row justify-center w-full ">
 				<a
-					href="https://github.com/GuillianV/Hytales-AssetEditor-Helper"
+					href="https://github.com/GuillianV/Hytale-AssetEditor-Helper"
 					target="_blank"
 					class="text-slate-800 basis-1/3 text-start">Github API</a
 				>
 				<a
-					href="https://github.com/GuillianV/Hytales-AssetEditor-Helper-Website"
+					href="https://github.com/GuillianV/Hytale-AssetEditor-Helper-Website"
 					target="_blank"
 					class=" text-slate-800 basis-1/3 text-center">Github Website</a
 				>
