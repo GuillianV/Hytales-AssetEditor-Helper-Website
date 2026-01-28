@@ -40,7 +40,4 @@ Systeme de page et filtre dans properties
 Exemples dynamiques
 UI
 
-Correiger textes en francais
-Ajouter axeption / Analytics
-Ajouter mail en cas de contact
 Ajouter une liscence

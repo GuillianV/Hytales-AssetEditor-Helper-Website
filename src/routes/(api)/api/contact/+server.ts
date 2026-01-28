@@ -64,14 +64,14 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
 		const mailer = new Mailer();
 		await mailer.init();
 		mailer.sendMail(
-			email as string,
-			'Request from cms',
-			'Demande de contact reçu',
-			'Demande de contact reçu'
+			'guillianvibert90@gmail.com',
+			'Request from hytales asset editor helper',
+			`Demande de contact type : ${contactType}, message : ${message} , email : ${email} , discordId : ${discordId}`,
+			`Demande de contact type : ${contactType}, message : ${message} , email : ${email} , discordId : ${discordId}`
 		);
 
 		logger.info({}, 'Formulaire de contact envoyé', '/api/contact');
-		return new Response(JSON.stringify({ type: 'success', message: 'Formulaire envoye !' }), {
+		return new Response(JSON.stringify({ type: 'success', message: 'Form sent with success !' }), {
 			status: 200
 		});
 	} catch (error) {
@@ -79,7 +79,7 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
 		return new Response(
 			JSON.stringify({
 				type: 'error',
-				errorMsg: error instanceof Error ? error.message : 'Erreur survenue'
+				errorMsg: error instanceof Error ? error.message : 'Erreur has occured'
 			}),
 			{ status: 500 }
 		);
