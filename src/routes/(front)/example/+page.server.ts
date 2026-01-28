@@ -7,12 +7,11 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	if (fullpath == null) {
 		error(404, 'Not found');
 	}
-	const example = await fetch(`http://localhost:3000/game/server/asset?fullpath=${fullpath}`)
+	const example = await fetch(`https://hae.guillian.net/game/server/asset?fullpath=${fullpath}`)
 		.then((res) => res.json())
 		.catch((err) => {
 			return null;
 		});
-
 
 	if (example == null || example.error) {
 		error(404, example?.error ?? 'Not found');
