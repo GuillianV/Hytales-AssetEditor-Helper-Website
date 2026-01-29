@@ -7,6 +7,9 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	if (fullpath == null) {
 		error(404, 'Not found');
 	}
+
+	fullpath = fullpath.replaceAll('\\\\', '/').replaceAll('\\', '/');
+
 	const example = await fetch(`https://hae.guillian.net/game/server/asset?fullpath=${fullpath}`)
 		.then((res) => res.json())
 		.catch((err) => {
@@ -19,6 +22,10 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 
 	const paths = fullpath.split('/');
 	const filename = paths.pop();
+	if (filename == null) {
+		error(404, 'Not found');
+	}
+	fullpath = fullpath.replace(filename, '');
 
 	return {
 		example,

@@ -37,5 +37,4 @@ Page d'un exemple
 ## TODO
 
 Systeme de page et filtre dans properties
-Exemples dynamiques
 UI
