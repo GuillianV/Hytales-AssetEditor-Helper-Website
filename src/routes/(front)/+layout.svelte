@@ -67,12 +67,12 @@
 		>
 			<div class="flex flex-row justify-center w-full">
 				<a
-					href="https://github.com/GuillianV/Hytale-AssetEditor-Helper"
+					href="https://github.com/GuillianV/Hytales-AssetEditor-Helper"
 					target="_blank"
 					class="text-slate-800 basis-1/3 text-start">Github API</a
 				>
 				<a
-					href="https://github.com/GuillianV/Hytale-AssetEditor-Helper-Website"
+					href="https://github.com/GuillianV/Hytales-AssetEditor-Helper-Website"
 					target="_blank"
 					class=" text-slate-800 basis-1/3 text-center">Github Website</a
 				>

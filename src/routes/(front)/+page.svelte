@@ -162,12 +162,12 @@
 			<strong> This is in developement, </strong>
 			<br />
 			Backend Github &nbsp;:
-			<a class="underline" href="https://github.com/GuillianV/Hytale-AssetEditor-Helper"
-				>GuillianV/Hytale-AssetEditor-Helper</a
+			<a class="underline" href="https://github.com/GuillianV/Hytales-AssetEditor-Helper"
+				>GuillianV/Hytales-AssetEditor-Helper</a
 			>. <br />
 			Frontend Github :
-			<a class="underline" href="https://github.com/GuillianV/Hytale-AssetEditor-Helper-Website"
-				>GuillianV/Hytale-AssetEditor-Helper-Website</a
+			<a class="underline" href="https://github.com/GuillianV/Hytales-AssetEditor-Helper-Website"
+				>GuillianV/Hytales-AssetEditor-Helper-Website</a
 			>. <br /><br />
 
 			Give me your feedback and constructive advice
